@@ -4,13 +4,14 @@ using ShoppingCart.Api.Domain;
 
 namespace ShoppingCart.Api.Data
 {
-    public class CartDbContext:DbContext
+    public class CartDbContext : DbContext
     {
-        public CartDbContext(DbContextOptions<CartDbContext> options):base(options)
+        public CartDbContext(DbContextOptions<CartDbContext> options) : base(options)
         {
-            
+
         }
 
+        /*
         public DbSet<Campaign> CampaignDbSet { get; set; }
         public DbSet<Cart> CartDbSet { get; set; }
         public DbSet<CartItem> CartItemDbSet { get; set; }
@@ -18,7 +19,8 @@ namespace ShoppingCart.Api.Data
         public DbSet<Coupon> CouponDbSet { get; set; }
         public DbSet<Product> ProductDbSet { get; set; }
         public DbSet<ProductDefinition> ProductDefinitionDbSet { get; set; }
-        
+        */
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.MapCampaign();

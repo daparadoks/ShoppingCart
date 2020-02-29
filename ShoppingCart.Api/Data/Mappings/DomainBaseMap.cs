@@ -18,7 +18,8 @@ namespace ShoppingCart.Api.Data.Mappings
         {
             entity.MapDomainBase();
             entity.Property(x => x.Discount).IsRequired();
-            entity.Property(x => x.DiscountType).IsRequired();
+            entity.Property(x => x.DiscountTypeId).IsRequired();
+            entity.Ignore(x => x.DiscountType);
             return entity;
         }
     }

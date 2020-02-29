@@ -6,7 +6,7 @@ namespace ShoppingCart.Api.Repositories
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public CategoryRepository(CartDbContext dbContext, DbSet<Category> dbSet) : base(dbContext, dbSet)
+        public CategoryRepository(CartDbContext dbContext) : base(dbContext)
         {
             
         }

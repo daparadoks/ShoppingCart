@@ -18,7 +18,10 @@ namespace ShoppingCart.Test
         public void Should_Add_Category()
         {
             var repository = _serviceProvider.GetService<ICategoryRepository>();
-            var category = new Category("Bilgisayar Bileşenleri");
+            var category = new Category
+            {
+                Title = "Bilgisayar Bileşenleri"
+            };
             repository.Add(category);
             category.Id.Should().BeGreaterThan(0);
         }

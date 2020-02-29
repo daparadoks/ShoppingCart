@@ -22,7 +22,7 @@ namespace ShoppingCart.Api.Services
         
         public async Task<Cart> Add(int userId)
         {
-            var cart = new Cart(userId);
+            var cart = new Cart();
             await _cartRepository.Add(cart);
             return cart;
         }
@@ -32,7 +32,7 @@ namespace ShoppingCart.Api.Services
 
         public async Task AddItem(Cart cart, Product product, int quantity)
         {
-            var cartItem = new CartItem(product, quantity);
+            var cartItem = new CartItem();
             cart.Items.Add(cartItem);
             await _cartRepository.Update(cart);
         }

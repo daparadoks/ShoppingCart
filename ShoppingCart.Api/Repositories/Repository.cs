@@ -9,39 +9,32 @@ namespace ShoppingCart.Api.Repositories
     public class Repository<T> : IRepository<T> where T : DomainBase
     {
         private readonly DbContext _dbContext;
-        private readonly DbSet<T> _dbSet;
 
-        public IQueryable<T> BaseQuery => _dbSet.Where(x => !x.IsDeleted);
+        protected virtual DbSet<T> DbSet => _dbContext.Set<T>();
+        protected virtual IQueryable<T> DbSetNoTracking => DbSet.AsNoTracking();
 
-        public Repository(DbContext dbContext, DbSet<T> dbSet)
-        {
-            _dbContext = _dbContext;
-            _dbSet = dbSet;
-        }
+        public IQueryable<T> BaseQuery => DbSet.Where(x => !x.IsDeleted);
+        public IQueryable<T> BaseQueryNoTracking => DbSetNoTracking.Where(x => !x.IsDeleted);
+
+        protected Repository(DbContext dbContext) => _dbContext = dbContext;
         
         public async Task Add(T entity)
         {
-            ValidateEntity(entity);
-
             entity.IsDeleted = false;
-            _dbSet.Add(entity);
+            DbSet.Add(entity);
             await SaveChanges();
         }
 
         public async Task Update(T entity)
         {
-            ValidateEntity(entity);
-
-            _dbSet.Update(entity);
+            DbSet.Update(entity);
             await SaveChanges();
         }
         
         public async Task Delete(T entity)
         {
-            ValidateEntity(entity);
-
             entity.IsDeleted = true;
-            _dbSet.Update(entity);
+            DbSet.Update(entity);
             await SaveChanges();
         }
 
@@ -51,11 +44,5 @@ namespace ShoppingCart.Api.Repositories
         }
 
         public async Task<T> FindById(int id) => await BaseQuery.FirstOrDefaultAsync(x => x.Id == id);
-        
-        private static void ValidateEntity(T entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-        }
     }
 }

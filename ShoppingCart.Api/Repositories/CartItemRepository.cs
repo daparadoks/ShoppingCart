@@ -7,7 +7,7 @@ namespace ShoppingCart.Api.Repositories
     {
         private readonly CartDbContext _dbContext;
 
-        public CartItemRepository(CartDbContext dbContext) : base(dbContext, dbContext.CartItemDbSet)
+        public CartItemRepository(CartDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

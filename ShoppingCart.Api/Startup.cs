@@ -53,14 +53,7 @@ namespace ShoppingCart.Api
         {
             services.AddDbContext<CartDbContext>(opt =>
             {
-                opt.UseSqlServer(connectionString,
-                    sqlServerOptionsAction =>
-                    {
-                        sqlServerOptionsAction.EnableRetryOnFailure(
-                            maxRetryCount: 10,
-                            maxRetryDelay: TimeSpan.FromSeconds(30),
-                            errorNumbersToAdd: null);
-                    });
+                opt.UseSqlServer(connectionString);
             });
             
             services.AddTransient(typeof(ICartFacade), typeof(CartFacade));

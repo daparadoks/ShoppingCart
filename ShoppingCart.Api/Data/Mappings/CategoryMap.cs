@@ -9,6 +9,7 @@ namespace ShoppingCart.Api.Data.Mappings
         {
             var entity = modelBuilder.Entity<Category>();
             entity.ToTable("Category");
+            entity.Property(x => x.Title).HasMaxLength(100);
             entity.MapDomainBase();
 
             return modelBuilder;

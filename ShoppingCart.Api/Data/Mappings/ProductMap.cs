@@ -11,6 +11,8 @@ namespace ShoppingCart.Api.Data.Mappings
             entity.ToTable("Product");
             entity.MapDomainBase();
 
+            entity.HasOne(x => x.Definition).WithMany().HasForeignKey(x => x.DefinitionId);
+
             return modelBuilder;
         }
     }

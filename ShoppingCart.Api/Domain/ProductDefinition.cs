@@ -2,12 +2,8 @@
 {
     public class ProductDefinition: DomainBase
     {
-        public ProductDefinition(string title, Category category)
-        {
-            Title = title;
-            Category = category;
-        }
-        public string Title { get; }
-        public Category Category { get; }
+        public string Title { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

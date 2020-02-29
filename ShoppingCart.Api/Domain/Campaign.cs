@@ -1,16 +1,9 @@
 ﻿namespace ShoppingCart.Api.Domain
 {
-    public class Campaign: DiscountBase
+    public class Campaign : DiscountBase
     {
-        public Campaign(Category category, DiscountType discountType, int minimumItem, double discount) : base(discount, discountType)
-        {
-            Category = category;
-            MinimumItem = minimumItem;
-        }
-
-        public Category Category { get;}
-        public int MinimumItem { get;}
-
+        public Category Category { get; set; }
+        public int MinimumItem { get; set; }
         public int CategoryId { get; set; }
     }
 }

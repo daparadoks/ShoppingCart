@@ -2,13 +2,8 @@
 {
     public class DiscountBase : DomainBase
     {
-        protected DiscountBase(double discount, DiscountType type)
-        {
-            Discount = discount;
-            DiscountType = type;
-        }
-
-        public double Discount { get; }
-        public DiscountType DiscountType { get; }
+        public decimal Discount { get; set; }
+        public int DiscountTypeId { get; set; }
+        public DiscountType DiscountType => (DiscountType) DiscountTypeId;
     }
 }

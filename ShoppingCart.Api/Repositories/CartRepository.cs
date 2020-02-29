@@ -9,11 +9,11 @@ namespace ShoppingCart.Api.Repositories
     {
         private readonly CartDbContext _dbContext;
 
-        public CartRepository(CartDbContext dbContext): base(dbContext, dbContext.CartDbSet)
+        public CartRepository(CartDbContext dbContext): base(dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<int?> FindByUserId(int userId) => _dbContext.CartDbSet.FirstOrDefault(x => x.UserId == userId)?.Id;
+        public async Task<int?> FindByUserId(int userId) => BaseQueryNoTracking.FirstOrDefault(x => x.UserId == userId)?.Id;
     }
 }

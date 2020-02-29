@@ -4,14 +4,13 @@ using ShoppingCart.Api.Domain;
 
 namespace ShoppingCart.Api.Repositories
 {
-    public interface ICouponRepository: IRepository<Coupon>
+    public interface ICouponRepository : IRepository<Coupon>
     {
-        
     }
 
     public class CouponRepository : Repository<Coupon>, ICouponRepository
     {
-        public CouponRepository(CartDbContext dbContext) : base(dbContext, dbContext.CouponDbSet)
+        public CouponRepository(CartDbContext dbContext) : base(dbContext)
         {
         }
     }
